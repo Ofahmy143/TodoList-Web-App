@@ -7,12 +7,14 @@
     <title>To-do List </title>
 </head>
 <body>
-    if(day === "Saturday" || day === "Sunday"){
-        <h1 style="color:blueviolet"> This is a <&= day &> list </h1>
+    <% if(day === "Saturday" || day === "Sunday"){ %>
+        <h1 style="color:blueviolet"> This is a <%= day %> list </h1>
 
-    }else{
-        <h1 style="color:blue"> This is a <&= day &> list </h1>
-    }
+    <% }else{ %>
+        <h1 style="color:blue"> This is a <%= day %> list </h1>
+    <% } %>
+
+
     <form>
     </form>
     

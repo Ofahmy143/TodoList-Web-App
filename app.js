@@ -11,11 +11,6 @@ app.listen("3000",function(){
 app.get("/",function(req,res){
     var today = new Date().getDay();
     var day= null;
-    var obj = {
-        name: "fahmy",
-        age:"21",
-        gender:"male"
-    };
 
     switch(today){
         case 0:
@@ -44,5 +39,5 @@ app.get("/",function(req,res){
             break;
                     
     }
-    res.render("list",{obj:obj});
+    res.render("list",{day:day});
 })
