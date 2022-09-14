@@ -115,8 +115,7 @@ app.post("/",function(req,res){
         console.log(currentURL);
         res.redirect("/");
     }else{
-        // list.updateOne({name:currentURL},{items: items.push(newListItem)},function(err){if(err)console.log(err);});
-        // list.findOneAndUpdate({name})
+
                     list.findOneAndUpdate({name:currentURL},{$push: {"items": newListItem}},{safe:true , upsert:true},function(err,model){
                         console.log(err);
                     })
@@ -124,20 +123,6 @@ app.post("/",function(req,res){
         res.redirect("/"+currentURL);
 
     }
-
-
-
-    // if(req.body.list === "Work"){
-    //     workItems.push(newListItem);
-    //     res.redirect("/work");
-
-
-    // }else if(req.body.list === "workButton"){
-    //     res.redirect("/work");
-    // }else if(req.body.list === "aboutButton"){
-    //     res.redirect("/about");
-    // } else{
-    // }
 
 });
 app.post("/delete",function(req,res){
