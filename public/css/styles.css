@@ -43,7 +43,8 @@ input[type="checkbox"] {
   margin: 20px;
 }
 
-p {
+p,a {
+  text-decoration: none;
   margin: 0;
   padding: 20px;
   font-size: 20px;
@@ -103,4 +104,14 @@ footer {
 .item buttons{
   display: flex;
   flex-direction: row;
+}
+.topBox{
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  
+}
+.headerBtns{
+  width: 100px;
+  margin-left: 5px;
 }
