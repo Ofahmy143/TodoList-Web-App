@@ -22,7 +22,7 @@ const itemSchema=new mongoose.Schema({
 const homeList = mongoose.model("Homeitem" , itemSchema);
 
 
-app.listen("3000",function(){
+app.listen(process.env.PORT || 3000 ,function(){
 
     console.log("Server running on port 3000")
 })
