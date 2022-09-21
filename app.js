@@ -11,7 +11,8 @@ app.use(express.json());
 
 // var items =[];
 // var workItems = [];
-mongoose.connect("mongodb://localhost:27017/todoListDB");
+mongoose.connect("mongodb+srv://Fahmokky:7YFrcW5HWdobhBJd@clusterfah.3bcdud9.mongodb.net/todoListDB");
+
 
 const itemSchema=new mongoose.Schema({
     name: String
@@ -104,23 +105,32 @@ app.post("/",function(req,res){
     // console.log(req.body);
     // console.log(req.params);
 
-    const currentURL = req.body.list;
+    const listHeader = req.body.list;
+    console.log(listHeader);
 
 
     let newListItem =new homeList({ name: req.body.todoItem});
     // let customName = req.url.replace(/ \//g , "")
 
-    if(currentURL === date.getDay()){
+    if(listHeader === date.getDay()){
         newListItem.save();
-        console.log(currentURL);
+        console.log(listHeader);
         res.redirect("/");
-    }else{
+    }else if(listHeader === "lists"){
+        let nList = new list({
+            name: req.body.todoItem.toLowerCase().replace( /[^a-zA-Z0-9-" " ]/g,"" ),
+            items : defaultArr
+        } )
+        nList.save();
+        res.redirect("/lists");
 
-                    list.findOneAndUpdate({name:currentURL},{$push: {"items": newListItem}},{safe:true , upsert:true},function(err,model){
-                        console.log(err);
+
+    }else{
+            list.findOneAndUpdate({name:listHeader},{$push: {"items": newListItem}},{safe:true , upsert:true},function(err,model){
+             console.log(err);
                     })
                 
-        res.redirect("/lists/"+currentURL);
+        res.redirect("/lists/"+listHeader);
 
     }
 
