@@ -12,5 +12,8 @@
   },
   "author": "Fahmy",
   "license": "ISC",
+  "engines": {
+    "node": "16.17.0"
+  },
   "description": ""
 }
