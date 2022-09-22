@@ -143,13 +143,15 @@ app.post("/delete",function(req,res){
     const listHeader = arr[0];
     const item_id = arr[1];
     if(listHeader === date.getDay()){
+        console.log("IAM HERE 1");
+
         homeList.findByIdAndRemove(item_id,function(err){
             if(err) {console.log("Error in deletion of item first one");
         console.log(err)}
         })
         res.redirect("/");
     }else if(listHeader === "lists"){
-
+        console.log("IAM HERE 2");
         list.findByIdAndRemove(item_id,function(err){
             if(err) console.log(err);
         })
@@ -157,6 +159,7 @@ app.post("/delete",function(req,res){
 
 
     }else{
+
         list.find({name:listHeader},function(err,foundLists){
             const itemsArr = foundLists[0].items
 
@@ -164,14 +167,14 @@ app.post("/delete",function(req,res){
                 if(item_id === item.id){
 
                     list.updateOne({name:listHeader},{$pull: {items:item} },function(err){
+                        
                         if(err) console.log(err);
-                    });
-                }else{
+                        res.redirect("/lists/"+listHeader);
 
+                    });
                 }
             });
             })
-            res.redirect("/lists/"+listHeader);
         }
     }
 
