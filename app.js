@@ -184,7 +184,14 @@ app.get("/about",function(req,res){
 })
 
 app.post("/lists",function(req,res){
-    res.redirect("/lists");
+    console.log(req.body);
+    if(req.body.show === "lists"){
+        res.redirect("/lists");
+
+    }else if(req.body.show === "home"){
+        res.redirect("/");
+
+    }
 })
 
 app.get("/lists",function(req,res){
